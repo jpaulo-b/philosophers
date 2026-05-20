@@ -6,7 +6,7 @@
 /*   By: jpaulo-b <jpaulo-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 15:55:17 by jpaulo-b          #+#    #+#             */
-/*   Updated: 2026/05/19 16:17:43 by jpaulo-b         ###   ########.fr       */
+/*   Updated: 2026/05/20 14:44:44 by jpaulo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_info
 
 int		var_init(t_info *info, char **av);
 int		philo_init(t_info *info);
+int		init_mutexes(t_info *info, int philos);
 size_t	get_time(void);
 void	smart_sleep(size_t time, t_philo *philo);
 int		all_meals_done(t_philo *philo);

@@ -6,7 +6,7 @@
 /*   By: jpaulo-b <jpaulo-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 15:55:50 by jpaulo-b          #+#    #+#             */
-/*   Updated: 2026/05/19 17:06:39 by jpaulo-b         ###   ########.fr       */
+/*   Updated: 2026/05/20 14:04:10 by jpaulo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ int	print_action(t_philo *philo, char *action)
 		return (0);
 	}
 	pthread_mutex_lock(philo->write_lock);
-	printf("%zu  %d %s\n", get_time() - philo->start_time, philo->id, action);
+	printf("%zu  %d %s\n", get_time() - philo->start_time,
+		philo->id, action);
 	pthread_mutex_unlock(philo->write_lock);
 	pthread_mutex_unlock(philo->dead_lock);
 	return (1);
@@ -51,7 +52,8 @@ int	print_death(t_philo *philo)
 	{
 		*(philo->dead) = 1;
 		pthread_mutex_lock(philo->write_lock);
-		printf("%zu  %d died\n", get_time() - philo->start_time, philo->id);
+		printf("%zu  %d died\n", get_time() - philo->start_time,
+			philo->id);
 		pthread_mutex_unlock(philo->write_lock);
 	}
 	pthread_mutex_unlock(philo->dead_lock);

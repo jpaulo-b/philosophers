@@ -6,7 +6,7 @@
 /*   By: jpaulo-b <jpaulo-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 15:56:41 by jpaulo-b          #+#    #+#             */
-/*   Updated: 2026/05/19 17:57:00 by jpaulo-b         ###   ########.fr       */
+/*   Updated: 2026/05/20 14:04:10 by jpaulo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ size_t	get_time(void)
 
 	if (gettimeofday(&current, NULL) != 0)
 		return (0);
-	return ((size_t)current.tv_sec * 1000ull + (size_t)current.tv_usec / 1000ull);
+	return ((size_t)current.tv_sec * 1000ull
+		+ (size_t)current.tv_usec / 1000ull);
 }
 
 void	smart_sleep(size_t time, t_philo *philo)

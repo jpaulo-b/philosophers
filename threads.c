@@ -6,12 +6,13 @@
 /*   By: jpaulo-b <jpaulo-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 15:56:34 by jpaulo-b          #+#    #+#             */
-/*   Updated: 2026/05/21 10:02:41 by jpaulo-b         ###   ########.fr       */
+/*   Updated: 2026/05/21 15:41:11 by jpaulo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/*  Routine for each philosopher thread */
 void	*philosopher_routine(void *arg)
 {
 	t_philo	*philo;
@@ -40,6 +41,7 @@ void	*philosopher_routine(void *arg)
 	return (NULL);
 }
 
+/*  Check if all philosophers are satisfied */
 static int	philo_satisfied(t_info *info)
 {
 	int	full_count;
@@ -51,6 +53,7 @@ static int	philo_satisfied(t_info *info)
 	return (0);
 }
 
+/*  Monitor routine to check for philosopher deaths and satisfaction */
 void	*monitor_routine(void *arg)
 {
 	t_info	*info;

@@ -6,12 +6,13 @@
 /*   By: jpaulo-b <jpaulo-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 16:20:00 by jpaulo-b          #+#    #+#             */
-/*   Updated: 2026/05/21 10:06:41 by jpaulo-b         ###   ########.fr       */
+/*   Updated: 2026/05/21 15:47:20 by jpaulo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/*  Initialize mutexes for the simulation  */
 int	init_mutexes(t_info *info, int philos)
 {
 	int	i;
@@ -29,6 +30,7 @@ int	init_mutexes(t_info *info, int philos)
 	return (0);
 }
 
+/*  Take both forks for a philosopher  */
 void	take_forks(t_philo *philo)
 {
 	pthread_mutex_lock(philo->l_fork);
@@ -37,6 +39,7 @@ void	take_forks(t_philo *philo)
 	print_action(philo, "has taken a fork");
 }
 
+/*  Eat and release forks  */
 void	eat_and_release(t_philo *philo)
 {
 	pthread_mutex_lock(philo->meal_lock);
@@ -51,6 +54,7 @@ void	eat_and_release(t_philo *philo)
 	pthread_mutex_unlock(philo->r_fork);
 }
 
+/*  Count the number of satisfied philosophers  */
 int	count_satisfied(t_info *info)
 {
 	int	i;
@@ -70,6 +74,7 @@ int	count_satisfied(t_info *info)
 	return (full_count);
 }
 
+/*  Check if any philosopher has died  */
 int	check_death(t_info *info)
 {
 	int		i;

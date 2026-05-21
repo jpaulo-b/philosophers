@@ -6,12 +6,13 @@
 /*   By: jpaulo-b <jpaulo-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 15:56:03 by jpaulo-b          #+#    #+#             */
-/*   Updated: 2026/05/21 09:58:24 by jpaulo-b         ###   ########.fr       */
+/*   Updated: 2026/05/21 15:02:01 by jpaulo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/*  Allocate memory for the philosophers 'philo[] and forks[]'*/
 static int	malloc_philo(t_info *info, int philos)
 {
 	info->philo = malloc(sizeof(t_philo) * philos);
@@ -23,17 +24,19 @@ static int	malloc_philo(t_info *info, int philos)
 	return (0);
 }
 
+/*  Set up the information for the simulation */
 static void	setup_info(t_info *info, int *vals)
 {
 	info->dead_flag = 0;
 	info->philo[0].num_of_philos = vals[0];
-	info->philo[0].num_times_to_eat = vals[4];
 	info->philo[0].time_to_die = (size_t)vals[1];
 	info->philo[0].time_to_eat = (size_t)vals[2];
 	info->philo[0].time_to_sleep = (size_t)vals[3];
+	info->philo[0].num_times_to_eat = vals[4];
 	info->philo[0].start_time = get_time();
 }
 
+/*  Initialize variables for each philosopher*/
 static int	init_philos(t_info *info)
 {
 	int	i;
@@ -62,6 +65,7 @@ static int	init_philos(t_info *info)
 	return (0);
 }
 
+/*  Read argc/argv and set an array vals[] with the arguments */
 int	var_init(t_info *info, char **av)
 {
 	int	vals[5];
@@ -85,6 +89,7 @@ int	var_init(t_info *info, char **av)
 	return (init_philos(info));
 }
 
+/*  Initialize the philosopher threads */
 int	philo_init(t_info *info)
 {
 	int			i;

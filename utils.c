@@ -6,12 +6,13 @@
 /*   By: jpaulo-b <jpaulo-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 15:56:41 by jpaulo-b          #+#    #+#             */
-/*   Updated: 2026/05/21 10:03:52 by jpaulo-b         ###   ########.fr       */
+/*   Updated: 2026/05/21 15:49:06 by jpaulo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/*  Convert a string to an integer to use in init.c  */
 int	ft_atoi(const char *str)
 {
 	long long	number;
@@ -33,6 +34,7 @@ int	ft_atoi(const char *str)
 	return ((int)number);
 }
 
+/*  Get the current time in milliseconds */
 size_t	get_time(void)
 {
 	struct timeval	current;
@@ -43,6 +45,7 @@ size_t	get_time(void)
 		+ (size_t)current.tv_usec / 1000ull);
 }
 
+/*  Sleep for a specified time, checking for death */
 void	smart_sleep(size_t time, t_philo *philo)
 {
 	size_t	start;
@@ -56,6 +59,7 @@ void	smart_sleep(size_t time, t_philo *philo)
 	}
 }
 
+/*  Check if all required meals are done */
 int	all_meals_done(t_philo *philo)
 {
 	if (philo->num_times_to_eat > 0

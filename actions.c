@@ -6,12 +6,13 @@
 /*   By: jpaulo-b <jpaulo-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 15:55:50 by jpaulo-b          #+#    #+#             */
-/*   Updated: 2026/05/20 14:04:10 by jpaulo-b         ###   ########.fr       */
+/*   Updated: 2026/05/21 15:40:08 by jpaulo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/*  Check if a philosopher is dead */
 int	is_dead(t_philo *philo)
 {
 	int	value;
@@ -22,6 +23,7 @@ int	is_dead(t_philo *philo)
 	return (value);
 }
 
+/*  Set the dead flag for a philosopher */
 void	set_dead(t_philo *philo)
 {
 	pthread_mutex_lock(philo->dead_lock);
@@ -29,6 +31,7 @@ void	set_dead(t_philo *philo)
 	pthread_mutex_unlock(philo->dead_lock);
 }
 
+/*  Print an action for a philosopher */
 int	print_action(t_philo *philo, char *action)
 {
 	pthread_mutex_lock(philo->dead_lock);
@@ -45,6 +48,7 @@ int	print_action(t_philo *philo, char *action)
 	return (1);
 }
 
+/*  Print the death message for a philosopher */
 int	print_death(t_philo *philo)
 {
 	pthread_mutex_lock(philo->dead_lock);

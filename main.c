@@ -6,7 +6,7 @@
 /*   By: jpaulo-b <jpaulo-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 15:54:46 by jpaulo-b          #+#    #+#             */
-/*   Updated: 2026/05/19 16:28:18 by jpaulo-b         ###   ########.fr       */
+/*   Updated: 2026/05/21 09:59:07 by jpaulo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	destroy_mutexes(t_info *info)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < info->philo[0].num_of_philos)

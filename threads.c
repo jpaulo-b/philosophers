@@ -6,7 +6,7 @@
 /*   By: jpaulo-b <jpaulo-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 15:56:34 by jpaulo-b          #+#    #+#             */
-/*   Updated: 2026/05/20 14:04:10 by jpaulo-b         ###   ########.fr       */
+/*   Updated: 2026/05/21 10:02:41 by jpaulo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ void	*philosopher_routine(void *arg)
 
 static int	philo_satisfied(t_info *info)
 {
-	int full_count;
+	int	full_count;
 
 	full_count = count_satisfied(info);
-	if (info->philo[0].num_times_to_eat > 0 &&
-		full_count == info->philo[0].num_of_philos)
+	if (info->philo[0].num_times_to_eat > 0
+		&& full_count == info->philo[0].num_of_philos)
 		return (1);
 	return (0);
 }

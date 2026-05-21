@@ -6,7 +6,7 @@
 /*   By: jpaulo-b <jpaulo-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 15:56:03 by jpaulo-b          #+#    #+#             */
-/*   Updated: 2026/05/20 15:25:30 by jpaulo-b         ###   ########.fr       */
+/*   Updated: 2026/05/21 09:58:24 by jpaulo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	setup_info(t_info *info, int *vals)
 
 static int	init_philos(t_info *info)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	while (++i < info->philo[0].num_of_philos)
@@ -87,14 +87,14 @@ int	var_init(t_info *info, char **av)
 
 int	philo_init(t_info *info)
 {
-	int		i;
+	int			i;
 	pthread_t	monitor;
 
 	i = -1;
 	while (++i < info->philo[0].num_of_philos)
 	{
 		if (pthread_create(&info->philo[i].thread, NULL,
-			philosopher_routine, (void *)&info->philo[i]) != 0)
+				philosopher_routine, (void *)&info->philo[i]) != 0)
 			return (1);
 	}
 	if (pthread_create(&monitor, NULL, monitor_routine, info) != 0)

@@ -6,7 +6,7 @@
 /*   By: jpaulo-b <jpaulo-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 16:20:00 by jpaulo-b          #+#    #+#             */
-/*   Updated: 2026/05/20 14:24:07 by jpaulo-b         ###   ########.fr       */
+/*   Updated: 2026/05/21 10:06:41 by jpaulo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	init_mutexes(t_info *info, int philos)
 {
-	int i;
+	int	i;
 
 	if (pthread_mutex_init(&info->write_lock, NULL) != 0)
 		return (1);
@@ -53,17 +53,17 @@ void	eat_and_release(t_philo *philo)
 
 int	count_satisfied(t_info *info)
 {
-	int i;
-	int full_count;
+	int	i;
+	int	full_count;
 
 	full_count = 0;
 	i = -1;
 	while (++i < info->philo[0].num_of_philos)
 	{
 		pthread_mutex_lock(info->philo[i].meal_lock);
-		if (info->philo[i].num_times_to_eat > 0 &&
-			info->philo[i].meals_eaten >=
-			info->philo[i].num_times_to_eat)
+		if (info->philo[i].num_times_to_eat > 0
+			&& info->philo[i].meals_eaten
+			>= info->philo[i].num_times_to_eat)
 			full_count++;
 		pthread_mutex_unlock(info->philo[i].meal_lock);
 	}
@@ -80,8 +80,8 @@ int	check_death(t_info *info)
 	{
 		pthread_mutex_lock(info->philo[i].meal_lock);
 		now = get_time();
-		if (now - info->philo[i].last_meal >
-			info->philo[i].time_to_die)
+		if (now - info->philo[i].last_meal
+			> info->philo[i].time_to_die)
 		{
 			print_death(&info->philo[i]);
 			pthread_mutex_unlock(info->philo[i].meal_lock);

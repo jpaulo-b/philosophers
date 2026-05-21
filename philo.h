@@ -6,7 +6,7 @@
 /*   By: jpaulo-b <jpaulo-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 15:55:17 by jpaulo-b          #+#    #+#             */
-/*   Updated: 2026/05/20 14:44:44 by jpaulo-b         ###   ########.fr       */
+/*   Updated: 2026/05/21 10:00:10 by jpaulo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,17 @@ typedef struct s_philo
 	pthread_mutex_t	*write_lock;
 	pthread_mutex_t	*dead_lock;
 	pthread_mutex_t	*meal_lock;
-} 	t_philo;
+}	t_philo;
 
 typedef struct s_info
 {
-	int			dead_flag;
+	int				dead_flag;
 	pthread_mutex_t	write_lock;
 	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	*forks;
 	t_philo			*philo;
-} 	t_info;
+}	t_info;
 
 int		var_init(t_info *info, char **av);
 int		philo_init(t_info *info);

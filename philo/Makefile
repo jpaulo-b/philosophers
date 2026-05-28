@@ -6,12 +6,12 @@
 #    By: jpaulo-b <jpaulo-b@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/19 15:56:21 by jpaulo-b          #+#    #+#              #
-#    Updated: 2026/05/25 11:35:15 by jpaulo-b         ###   ########.fr        #
+#    Updated: 2026/05/28 16:34:11 by jpaulo-b         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -lpthread#-L. -g3 -fsanitize=thread -O3 -march=native
+CC = cc
+CFLAGS = -Wall -Wextra -Werror #-pthread -g3 -fsanitize=thread -O3 -march=native
 RM = rm -f
 
 SRC = actions.c \

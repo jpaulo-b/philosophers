@@ -6,11 +6,13 @@
 /*   By: jpaulo-b <jpaulo-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 15:56:03 by jpaulo-b          #+#    #+#             */
-/*   Updated: 2026/05/21 15:02:01 by jpaulo-b         ###   ########.fr       */
+/*   Updated: 2026/05/28 16:15:04 by jpaulo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	alone_philo(t_info *info, int *vals);
 
 /*  Allocate memory for the philosophers 'philo[] and forks[]'*/
 static int	malloc_philo(t_info *info, int philos)
@@ -81,6 +83,8 @@ int	var_init(t_info *info, char **av)
 		return (1);
 	if (av[4] && vals[4] < 1)
 		return (1);
+	if (vals[0] == 1)
+		return (alone_philo(info, vals));
 	if (malloc_philo(info, vals[0]) != 0)
 		return (1);
 	if (init_mutexes(info, vals[0]) != 0)
@@ -89,6 +93,29 @@ int	var_init(t_info *info, char **av)
 	return (init_philos(info));
 }
 
+int	alone_philo(t_info *info, int *vals)
+{
+	if (malloc_philo(info, vals[0]) != 0)
+		return (0);
+	setup_info(info, vals);
+	pthread_mutex_init(&info->write_lock, NULL);
+	pthread_mutex_init(&info->dead_lock, NULL);
+	pthread_mutex_lock(&info->write_lock);
+	printf("0 1 has taken a fork\n");
+	pthread_mutex_unlock(&info->write_lock);
+	usleep(info->philo[0].time_to_die * 1000);
+	pthread_mutex_lock(&info->write_lock);
+	printf("%lu 1 died\n", info->philo[0].time_to_die);
+	pthread_mutex_unlock(&info->write_lock);
+	pthread_mutex_lock(&info->dead_lock);
+	info->dead_flag = 1;
+	pthread_mutex_unlock(&info->dead_lock);
+	pthread_mutex_destroy(&info->write_lock);
+	pthread_mutex_destroy(&info->dead_lock);
+	return (0);
+}
+
+
 /*  Initialize the philosopher threads */
 int	philo_init(t_info *info)
 {
@@ -96,6 +123,8 @@ int	philo_init(t_info *info)
 	pthread_t	monitor;
 
 	i = -1;
+	if (info->philo[0].num_of_philos == 1)
+		return (1);
 	while (++i < info->philo[0].num_of_philos)
 	{
 		if (pthread_create(&info->philo[i].thread, NULL,

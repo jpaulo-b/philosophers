@@ -6,7 +6,7 @@
 /*   By: jpaulo-b <jpaulo-b@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/19 15:56:03 by jpaulo-b          #+#    #+#             */
-/*   Updated: 2026/05/28 16:15:04 by jpaulo-b         ###   ########.fr       */
+/*   Updated: 2026/05/28 18:15:21 by jpaulo-b         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,20 +83,21 @@ int	var_init(t_info *info, char **av)
 		return (1);
 	if (av[4] && vals[4] < 1)
 		return (1);
-	if (vals[0] == 1)
-		return (alone_philo(info, vals));
 	if (malloc_philo(info, vals[0]) != 0)
 		return (1);
 	if (init_mutexes(info, vals[0]) != 0)
 		return (1);
+	if (vals[0] == 1)
+	{
+		alone_philo(info, vals);
+		return (1);
+	}
 	setup_info(info, vals);
 	return (init_philos(info));
 }
 
 int	alone_philo(t_info *info, int *vals)
 {
-	if (malloc_philo(info, vals[0]) != 0)
-		return (0);
 	setup_info(info, vals);
 	pthread_mutex_init(&info->write_lock, NULL);
 	pthread_mutex_init(&info->dead_lock, NULL);
